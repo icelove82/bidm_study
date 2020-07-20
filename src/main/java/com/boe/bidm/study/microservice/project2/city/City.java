@@ -23,7 +23,7 @@ public class City {
     String cityName;
 
     @Column(name = "MODIFY_BY")
-    String modifyBY;
+    String modifyBy;
 
     @Column(name = "MODIFY_TIME")
     LocalDateTime modifyTime;
