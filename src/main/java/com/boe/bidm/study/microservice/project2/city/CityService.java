@@ -18,4 +18,8 @@ public class CityService {
                 .findAllByCityCodeContainingAndCityNameContainingOrderByCityName(cityCode, cityName);
     }
 
+    public void deleteCity(List<City> cityList) {
+        mCityRepository.deleteAll(cityList);
+    }
+
 }

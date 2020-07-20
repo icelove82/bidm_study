@@ -1,10 +1,7 @@
 package com.boe.bidm.study.microservice.project2.city;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,12 @@ public class CityController {
     public List<City> getCity(@RequestParam(CODE) String code, @RequestParam(NAME) String name) {
 
         return mCityService.getCity(code, name);
+    }
+
+    @DeleteMapping("/city")
+    public void deleteCity(@RequestBody List<City> cityList) {
+
+        mCityService.deleteCity(cityList);
     }
 
 }
