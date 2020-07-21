@@ -31,4 +31,10 @@ public class CityController {
         mCityService.deleteCity(cityList);
     }
 
+    @PostMapping("/city")
+    public int saveCity(@RequestBody List<City> cityList) {
+
+        return mCityService.saveCity(cityList);
+    }
+
 }
