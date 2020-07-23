@@ -13,9 +13,9 @@ public class StudentService {
     @Autowired
     StudentRepository mStudentRepository;
 
-    public List<Student> getStudent(String studentCode, String studentName, String universityCOde) {
+    public List<Student> getStudent(String studentCode, String studentName, String universityCode) {
 
         return mStudentRepository
-                .findAllByStudentCodeContainingAndStudentNameContainingAndUniversityCodeContaining(studentCode, studentName, universityCOde);
+                .findAllByStudentCodeContainingAndStudentNameContainingAndUniversityCodeContaining(studentCode, studentName, universityCode);
     }
 }

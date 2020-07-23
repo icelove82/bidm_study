@@ -35,7 +35,7 @@ public class Student {
     int score;
 
     @Column(name = "MODIFY_BY")
-    String modifyBY;
+    String modifyBy;
 
     @Column(name = "MODIFY_TIME")
     LocalDateTime modifyTime;
