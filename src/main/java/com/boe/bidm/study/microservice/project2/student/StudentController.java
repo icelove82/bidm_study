@@ -1,10 +1,7 @@
 package com.boe.bidm.study.microservice.project2.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +22,14 @@ public class StudentController {
     StudentService mStudentService;
 
     @GetMapping("/student")
-    public List<Student> getCity(@RequestParam(CODE) String code, @RequestParam(NAME) String name, @RequestParam(UNIVERSITY_CODE) String universityCode) {
+    public List<Student> getStudent(@RequestParam(CODE) String code, @RequestParam(NAME) String name, @RequestParam(UNIVERSITY_CODE) String universityCode) {
 
         return mStudentService.getStudent(code, name, universityCode);
+    }
+
+    @PostMapping("/student")
+    public int saveStudent(@RequestBody List<Student> data) {
+
+        return mStudentService.saveStudent(data);
     }
 }
