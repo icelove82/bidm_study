@@ -27,6 +27,12 @@ public class StudentController {
         return mStudentService.getStudent(code, name, universityCode);
     }
 
+    @DeleteMapping("/student")
+    public void deleteStudent(@RequestBody List<Student> studentList) {
+
+        mStudentService.deleteStudent(studentList);
+    }
+
     @PostMapping("/student")
     public int saveStudent(@RequestBody List<Student> data) {
 

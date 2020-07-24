@@ -1,7 +1,6 @@
 package com.boe.bidm.study.microservice.project2.student;
 
 
-import com.boe.bidm.study.microservice.legacy.StudentLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,11 @@ public class StudentService {
                 .findAllByStudentCodeContainingAndStudentNameContainingAndUniversityCodeContaining(studentCode, studentName, universityCode);
     }
 
+    public void deleteStudent(List<Student> studentList) {
+
+        mStudentRepository.deleteAll(studentList);
+    }
+
     public int saveStudent(List<Student> studentList) {
         // Time
         LocalDateTime timeNow = LocalDateTime.now();
@@ -32,4 +36,6 @@ public class StudentService {
         });
         return mStudentRepository.saveAll(studentList).size();
     }
+
+
 }
