@@ -34,8 +34,8 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    public int saveStudent(@RequestBody List<Student> data) {
+    public int saveStudent(@RequestBody List<Student> studentList) {
 
-        return mStudentService.saveStudent(data);
+        return mStudentService.saveStudent(studentList);
     }
 }
