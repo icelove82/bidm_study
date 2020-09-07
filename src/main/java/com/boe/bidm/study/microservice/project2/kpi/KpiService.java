@@ -96,4 +96,58 @@ public class KpiService {
         return resultList;
 
     }
+
+    // 每个大学平均分数，男生平均分数，女生平均分数
+    public List<KpiChart03> getKpiChart03() {
+
+        List<KpiChart03> resultList = new ArrayList<>();
+
+        List<University> universityList = mUniversityRepository.findAll();
+        List<Student> studentList = mStudentRepository.findAll();
+
+        universityList.parallelStream()
+                .forEach(university -> {
+
+                    List<Student> filteredStudent = studentList.stream()
+                            .filter(student -> student.getUniversityCode().equals(university.getUniversityCode()))
+                            .collect(Collectors.toList());
+
+                    double totalAvg = filteredStudent.stream().mapToInt(Student::getScore).sum() / filteredStudent.stream().count();
+
+                    List<Student> maleStudent = filteredStudent.stream()
+                            .filter(student -> student.getGender().equals("M"))
+                            .collect(Collectors.toList());
+
+
+                    double maleAvg = 0;
+
+                    try {
+                        maleAvg = maleStudent.stream().mapToInt(Student::getScore).sum() / maleStudent.stream().count();
+                    } catch (Exception e) {
+                        maleAvg = 0;
+                    }
+
+                    List<Student> femaleStudent = filteredStudent.stream()
+                            .filter(student -> student.getGender().equals("F"))
+                            .collect(Collectors.toList());
+
+                    double femaleAvg = 0;
+
+                    try {
+                        femaleAvg = femaleStudent.stream().mapToInt(Student::getScore).sum() / femaleStudent.stream().count();
+                    } catch (Exception e) {
+                        femaleAvg = 0;
+                    }
+
+                    resultList.add(KpiChart03.builder()
+                            .universityCode(university.getUniversityCode())
+                            .universityName(university.getUniversityName())
+                            .totalAvg(totalAvg)
+                            .maleAvg(maleAvg)
+                            .femaleAvg(femaleAvg)
+                            .build());
+                });
+
+        return resultList;
+    }
 }

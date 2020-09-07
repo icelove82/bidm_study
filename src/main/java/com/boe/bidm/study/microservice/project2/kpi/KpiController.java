@@ -25,4 +25,10 @@ public class KpiController {
 
         return mKpiService.getKpiChart02();
     }
+
+    @GetMapping("/kpi/03")
+    public List<KpiChart03> getKpiChart03() {
+
+        return mKpiService.getKpiChart03();
+    }
 }
