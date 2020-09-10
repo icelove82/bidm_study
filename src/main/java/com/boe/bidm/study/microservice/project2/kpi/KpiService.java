@@ -105,7 +105,7 @@ public class KpiService {
         List<University> universityList = mUniversityRepository.findAll();
         List<Student> studentList = mStudentRepository.findAll();
 
-        universityList.parallelStream()
+        universityList.stream()
                 .forEach(university -> {
 
                     List<Student> filteredStudent = studentList.stream()
